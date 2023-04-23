@@ -97,7 +97,7 @@ namespace SistemaVenta.BLL.Implementacion
 
                 if(imagen != null)
                 {
-                    string urlImagen = await _fireBaseService.SubirStorage(imagen, "carpeta_prodcto", producto_para_editar.NombreImagen);
+                    string urlImagen = await _fireBaseService.SubirStorage(imagen, "carpeta_producto", producto_para_editar.NombreImagen);
                     producto_para_editar.UrlImagen = urlImagen;
                 }
 

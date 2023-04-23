@@ -111,17 +111,17 @@
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
                                     <label for="txtCodigoBarra">Codigo Barra</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtCodigoBarra" name="Codigo Barra">
+                                    <input type="text" class="form-control form-control-sm input-validar" id="txtCodigoBarra" name="Codigo Barra" onkeypress="return permite(event, 'num')" minlength="13" maxlength="13">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="txtMarca">Marca</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtMarca" name="Marca">
+                                    <input type="text" class="form-control form-control-sm input-validar" id="txtMarca" name="Marca" onkeypress="return permite(event, 'num_car')">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-sm-12">
                                     <label for="txtDescripcion">Descripcion</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtDescripcion" name="Descripcion">
+                                    <input type="text" class="form-control form-control-sm input-validar" id="txtDescripcion" name="Descripcion" onkeypress="return permite(event, 'num_car')">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -133,13 +133,13 @@
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="txtStock">Stock</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtStock" name="Stock">
+                                    <input type="text" class="form-control form-control-sm input-validar" id="txtStock" name="Stock" onkeypress="return permite(event, 'num')">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
                                     <label for="txtPrecio">Precio</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtPrecio" name="Precio">
+                                    <input type="text" class="form-control form-control-sm input-validar" id="txtPrecio" name="Precio" onkeypress="return permite(event, 'num')">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="cboEstado">Estado</label>
@@ -152,7 +152,7 @@
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
                                     <label for="txtImagen">Imagen</label>
-                                    <input class="form-control-file" type="file" id="txtImagen" />
+                                    <input class="form-control-file" type="file" id="txtImagen" accept="image/*" onchange="convertToBase64Img();" />
                                 </div>
                             </div>
                         </div>

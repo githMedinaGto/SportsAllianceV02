@@ -7,20 +7,6 @@
 let tablaData;
 
 $(document).ready(function () {
-
-    //fetch("/Usuario/ListaRoles")
-    //    .then(response => {
-    //        return response.ok ? response.json() : Promise.reject(response);
-    //    })
-    //    .then(responseJson => {
-    //        if (responseJson.length > 0) {
-    //            responseJson.forEach((item) => {
-    //                $("#cboRol").append(
-    //                    $("<option>").val(item.idRol).text(item.descripcion)
-    //                )
-    //            })
-    //        }
-    //    })
     
     tablaData = $('#tbdata').DataTable({
         responsive: true,
@@ -110,9 +96,10 @@ $("#btnGuardar").click(function () {
 
                 if (responseJson.estado) {
 
-                    //tablaData.row.add(responseJson.objeto).draw(false)
-                    tablaData.destroy();
-                    tb_Usuarios();
+                    ////tablaData.row.add(responseJson.objeto).draw(false)
+                    //tablaData.destroy();
+                    //tb_Usuarios();
+                    tablaData.row.add(responseJson.object).draw(false);
 
                     $("#modalData").modal("hide")
                     swal("Listo!!", "La categoria fue creada", "success")
@@ -136,9 +123,12 @@ $("#btnGuardar").click(function () {
                 if (responseJson.estado) {
 
 
-                    //tablaData.row(filaSeleccionada).data(responseJson.objeto).draw(false);
-                    tablaData.destroy();
-                    tb_Usuarios();
+                    ////tablaData.row(filaSeleccionada).data(responseJson.objeto).draw(false);
+                    //tablaData.destroy();
+                    //tb_Usuarios();
+                    //filaSeleccionada = null;
+                    tablaData.row(filaSeleccionada).data(responseJson.object).draw(false);
+
                     filaSeleccionada = null;
                     $("#modalData").modal("hide")
                     swal("Listo!!", "La categoria fue modificada", "success")
@@ -205,8 +195,9 @@ $("#tbdata tbody").on("click", ".btn-eliminar", function () {
 
 
                             //tablaData.row(filaSeleccionada).data(responseJson.objeto).draw(false);
-                            tablaData.destroy();
-                            tb_Usuarios();
+                            //tablaData.destroy();
+                            //tb_Usuarios();
+                            tablaData.row(filaSeleccionada).remove().draw();
 
                             swal("Listo!!", "La categoria fue eliminada", "success")
                         } else {
@@ -264,4 +255,55 @@ function tb_Usuarios() {
             url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
         },
     });
+}
+
+function permite(elEvento, permitidos) {
+    // Variables que definen los caracteres permitidos
+    var numeros = "0123456789";
+    var caracteres = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    var numeros_caracteres = numeros + caracteres;
+    var teclas_especiales = [8, 37, 39, 46];
+    // 8 = BackSpace, 46 = Supr, 37 = flecha izquierda, 39 = flecha derecha
+
+
+    // Seleccionar los caracteres a partir del parámetro de la función
+    switch (permitidos) {
+        case 'num':
+            permitidos = numeros;
+            break;
+        case 'car':
+            permitidos = caracteres;
+            break;
+        case 'num_car':
+            permitidos = numeros_caracteres;
+            break;
+    }
+
+    // Obtener la tecla pulsada
+    var evento = elEvento || window.event;
+    var codigoCaracter = evento.charCode || evento.keyCode;
+    var caracter = String.fromCharCode(codigoCaracter);
+
+    // Comprobar si la tecla pulsada es alguna de las teclas especiales
+    // (teclas de borrado y flechas horizontales)
+    var tecla_especial = false;
+    for (var i in teclas_especiales) {
+        if (codigoCaracter == teclas_especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    // Comprobar si la tecla pulsada se encuentra en los caracteres permitidos
+    // o si es una tecla especial
+    return permitidos.indexOf(caracter) != -1 || tecla_especial;
+
+    //    < !--Sólo números-- >
+    //      <input type="text" id="texto" onkeypress="return permite(event, 'num')" />
+
+    //    <!--Sólo letras-- >
+    //      <input type="text" id="texto" onkeypress="return permite(event, 'car')" />
+
+    //    <!--Sólo letras o números-- >
+    //      <input type="text" id="texto" onkeypress="return permite(event, 'num_car')" />
 }
