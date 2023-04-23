@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "AcercaDe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Estilos {
+    <link href="~/sportsalliance/scripts/splide-4.1.3/dist/css/splide.min.css" rel="stylesheet" />
+}
+
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="@Url.Action("AcercaDe", "AcercaDe")">Acerca de</a></li>
+    </ol>
+</nav>
+@*<div class="container">*@
+    <div class="splide " role="group" aria-label="Splide Basic HTML Example">
+        <div class="splide__track">
+            <ul class="splide__list">
+            <li class="splide__slide" style="width: 60rem">
+                <div class="badge bg-primary text-wrap" style="width: 60rem; font-family: Arial; font-size: 16px;">
+                        Un apartado en una página web se refiere a una sección específica de contenido que se encuentra dentro de la estructura general de la página. Los apartados pueden variar en tamaño y contenido, dependiendo del tipo de página web y del propósito de cada sección.
+
+                        En general, los apartados se utilizan para organizar el contenido de la página y hacer que la navegación sea más fácil y fluida para los usuarios. Por ejemplo, un sitio web de noticias puede tener apartados separados para noticias locales, noticias internacionales, deportes y entretenimiento. De esta manera, los usuarios pueden encontrar fácilmente el tipo de noticias que les interesa sin tener que buscar a través de todo el sitio.
+
+                        Los apartados también se utilizan para destacar contenido importante o destacado. Un ejemplo de esto podría ser un sitio web de comercio electrónico que tiene una sección de "Ofertas del día" o "Productos más vendidos". Estas secciones resaltan los productos que los propietarios del sitio quieren promocionar y hacen que sea más fácil para los usuarios encontrar lo que buscan.
+
+                        Los apartados en una página web pueden incluir texto, imágenes, videos y otros elementos multimedia. Además, pueden tener diferentes diseños y formatos, como columnas, cuadrículas, carruseles y más. La combinación de estos elementos puede ayudar a crear una experiencia de usuario más atractiva y envolvente.
+
+                        En resumen, los apartados son una parte importante de la estructura de una página web, y su uso adecuado puede ayudar a mejorar la navegación y la experiencia del usuario en general.
+                    </div>
+                </li>
+            <li class="splide__slide" style="width: 60rem">
+                <div class="badge bg-primary text-wrap" style="width: 60rem; font-family: Arial; font-size: 16px;">
+                    "SportsAlliance" es una página web en línea que ofrece una experiencia completa de deportes, que combina la venta de productos de juego y la posibilidad de unirse a ligas deportivas locales. En esta plataforma, podrás encontrar una amplia variedad de productos de juego, como balones, accesorios y consolas, así como la oportunidad de ver los resultados de las ligas deportivas.
+
+                    Las ligas deportivas locales en "SportsAlliance" ofrecen la oportunidad de competir contra otros jugadores de lo localidad en deportes como el fútbo. Cada liga cuenta con su propia tabla de clasificación, lo que permite a los jugadores seguir su progreso y competir por premios.
+
+                    En resumen, "SportsAlliance" es una plataforma en línea que ofrece una experiencia completa de deportes, combinando la venta de productos de juego y la oportunidad de ver resultado de las ligas. Si eres un aficionado a los deportes y los juegos, esta página es definitivamente una que debes revisar y poderte unir.
+                </div>
+            </li>
+                @*<li class="splide__slide">Slide 03</li>*@
+            </ul>
+        </div>
+    </div>
+@*</div>*@
+@section Scripts{
+    
+    <script src="~/sportsalliance/scripts/splide-4.1.3/dist/js/splide.min.js"></script>
+    <script src="~/sportsalliance/js/AcercaDe.js"></script>
+
+}
+

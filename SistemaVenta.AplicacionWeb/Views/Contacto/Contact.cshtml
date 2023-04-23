@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewData["Title"] = "Contacto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="@Url.Action("Contact", "Contacto")">Contacto</a></li>
+    </ol>
+</nav>
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col">
+            <div class="your-element contact1-pic js-tilt" data-tilt="">
+                <img src="~/sportsalliance/assets/correo.png" alt="IMG">
+            </div>
+        </div>
+        <div class="col">
+            <div class="col-md-12 text-center">
+                <h4><b>Ponerse a contacto</b></h4>
+            </div>
+            <div class="col-md-12 ">
+                <input type="text" id="txtNombre" class="form-control" placeholder="Nombre" />
+                <br />
+            </div>
+            <div class="col-md-12 ">
+                <input type="email" id="txtEmail" class="form-control" placeholder="Correo" />
+                <br />
+            </div>
+            <div class="col-md-12 ">
+                <input type="text" id="txtSujeto" class="form-control" placeholder="Sujeto" />
+                <br />
+            </div>
+            <div class="col-md-12 ">
+                <textarea id="txtMensaje" class="form-control" placeholder="Mensaje"></textarea>
+                <br />
+            </div>
+            <div class="col-md-12 text-center">
+                <button id="btnEnviar" type="button" class="btn btn-success btn-lg btn-block">
+                    Enviar Correo
+                    <i class="fa fa-long-arrow-right"></i>
+                </button>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+@section Scripts{
+
+    <script src="~/sportsalliance/scripts/Tilt/vanilla-tilt.js"></script>
+
+}

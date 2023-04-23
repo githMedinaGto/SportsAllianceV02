@@ -1,0 +1,25 @@
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace SistemaVenta.AplicacionWeb.Controllers
+{
+    [Authorize]
+    public class NuevaVentaController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+    }
+
+    /*REgistrar venta
+     * 
+     * ClaimsPrincipal claimUser = HttpContext.User;
+
+                string idUsuario = claimUser.Claims
+                    .Where(c => c.Type == ClaimTypes.NameIdentifier)
+                    .Select(c => c.Value).SingleOrDefault();
+
+        modelo.IdUsuario = int.Parse(idUsuario)
+     */
+}
