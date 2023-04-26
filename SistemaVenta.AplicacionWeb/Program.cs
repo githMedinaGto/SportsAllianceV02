@@ -14,9 +14,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(option =>
     {
-        option.LoginPath = "/Acceso/Login";
+        //.LoginPath = "/Acceso/Login";
         //option.LoginPath = "/Home/Home";
-        option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        option.LoginPath = "/Acceso/Login";
+        //option.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+        option.ExpireTimeSpan = TimeSpan.FromSeconds(10);
     });
 
 
@@ -48,5 +50,13 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Home}/{id?}");
+
+app.UseStatusCodePagesWithRedirects("/Home/Error/{0}");
+
+app.MapControllerRoute(
+    name: "error",
+    pattern: "/Error",
+    defaults: new { controller = "Home", action = "Error" });
+
 
 app.Run();

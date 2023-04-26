@@ -1,0 +1,15 @@
+
+C:\Users\Jonathan Medina\source\repos\GDGS3082\SportsAlliance-\Models\Jugadores\JugadoresModels.cs
+
+contraseña de codigo es 1!HolaMundo
+
+
+Hosting
+https://youtu.be/XvtQsJxhYts
+
+
+Clave del sitio 6LdvsLQlAAAAAKBZUp1Jvnk5QOiKzS8Gcpfl3JKO
+
+Clave secreta 6LdvsLQlAAAAAIcwWqUPtTrOI1A7sQbnq6QiVRfP
+
+ngrok http 5048

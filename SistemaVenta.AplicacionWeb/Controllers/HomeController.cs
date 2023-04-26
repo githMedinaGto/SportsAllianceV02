@@ -326,5 +326,6 @@ namespace SistemaVenta.AplicacionWeb.Controllers
             return sTabla;
         }
         #endregion
+
     }
 }

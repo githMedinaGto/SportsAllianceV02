@@ -3,7 +3,7 @@ using System.Runtime.Loader;
 
 namespace SistemaVenta.AplicacionWeb.Utilidades.Extensiones
 {
-    public class CustomAssemblyLoadContext:AssemblyLoadContext
+    public class CustomAssemblyLoadContext : AssemblyLoadContext
     {
         public IntPtr LoadUnmanagedLibrary(string absolutePath)
         {

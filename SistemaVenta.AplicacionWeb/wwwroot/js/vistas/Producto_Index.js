@@ -100,7 +100,8 @@ function mostrarModal(modelo = MODELO_BASE) {
     $("#txtPrecio").val(modelo.precio);
     $("#cboEstado").val(modelo.esActivo);
     $("#txtImagen").val("");
-    $("#imgProducto").attr("src", modelo.urlImagen);
+    document.getElementById("imgProducto").src = modelo.urlImagen;
+    //$("#imgProducto").attr("src", modelo.urlImagen);
 
     $("#modalData").modal("show");
 

@@ -9,6 +9,12 @@ using SistemaVenta.BLL.Implementacion;
 using SistemaVenta.BLL.Interfaces;
 using SistemVentas.Entity;
 using System.Security.Claims;
+using Microsoft.Data.SqlClient;
+using SistemaVenta.AplicacionWeb.SportsAlliance;
+using System.Data;
+using NHibernate.Mapping.ByCode.Impl;
+using SistemVentas.DAL.DBventaContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace SistemaVenta.AplicacionWeb.Controllers
 {
@@ -21,20 +27,24 @@ namespace SistemaVenta.AplicacionWeb.Controllers
         private readonly IVentaService _ventaService;
         private readonly IMapper _mapper;
         private readonly IConverter _converter;
+        private readonly DbventaContext _dbContext;
 
         public NuevaVentaController(ITipoDocumentoVentaService tipoDocumentoVentaService,
             IVentaService ventaService,
-            IMapper mapper, IConverter converter
+            IMapper mapper, IConverter converter,
+            DbventaContext dbContext
             )
         {
             _tipoDocumentoVentaService = tipoDocumentoVentaService;
             _ventaService = ventaService;
             _mapper = mapper;
             _converter = converter;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
+            //NumeroCorrelativo correlativo = _dbContext.NumeroCorrelativos.Where(n => n.Gestion == "venta").First();
             return View();
         }
         public IActionResult NuevaVenta()
@@ -125,6 +135,16 @@ namespace SistemaVenta.AplicacionWeb.Controllers
 
             return File(archivoPDF, "application/pdf");
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Numero()
+        {
+            NumeroCorrelativo correlativo = _dbContext.NumeroCorrelativos.Where(n => n.Gestion == "venta").First();
+            return StatusCode(StatusCodes.Status200OK, correlativo);
+        }
+
+
     }
 
     /*REgistrar venta

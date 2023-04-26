@@ -20,8 +20,7 @@ namespace SistemaVenta.AplicacionWeb.SportsAlliance
         SqlConnection conex = new SqlConnection();
 
 
-        ////string cadenaCOnexion = "Data Source=" + servidor + "," +puerto+";"+ "user id=" + user+";"+"passeord="+password+"Initial Catalog"+bd+";"+"Persist Security Info=true";
-        //string cadenaCOnexion = "Server=JONATHANMEDINA\\MSSQLSERVERLINUX; DataBase=BD_SportAlliance;Integrated Security=true";
+
         string cadenaCOnexion = "Data Source=JONATHANMEDINA\\MSSQLSERVERLINUX; Initial Catalog=BD_SportAlliance; Integrated Security=True";
 
         //public SqlConnection establecerConexion()

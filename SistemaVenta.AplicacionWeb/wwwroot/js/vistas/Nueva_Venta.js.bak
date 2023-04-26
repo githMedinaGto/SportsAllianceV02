@@ -1,26 +1,6 @@
 ﻿let ValorImpuesto = 0;
 
-
 $(document).ready(function () {
-
-    $.ajax({
-        url: '/NuevaVenta/Numero',
-        type: 'GET',
-        statusCode: {
-            200: function (response) {
-                var numeroV = response.ultimoNumero + 1;
-                if (numeroV < 10) {
-                    $("#txtDocumentoCliente").val("00000" + numeroV)
-                } else {
-                    $("#txtDocumentoCliente").val("0000" + numeroV)
-                }
-            }
-        },
-        default: function () {
-            $.growl.error({ message: textStatus });
-        }
-    });
-
 
     fetch("/NuevaVenta/ListaTipoDocumentoVenta")
         .then(response => {
@@ -37,6 +17,22 @@ $(document).ready(function () {
         })
 
 
+    //fetch("/Negocio/Obtener")
+    //    .then(response => {
+    //        return response.ok ? response.json() : Promise.reject(response);
+    //    })
+    //    .then(responseJson => {
+    //        if (responseJson.length > 0) {
+    //            console.log(responseJson)
+    //            //responseJson.forEach((item) => {
+    //            //    $("#cboTipoDocumentoVenta").append(
+    //            //        $("<option>").val(item.idTipoDocumentoVenta).text(item.descripcion)
+    //            //    )
+    //            //})
+    //        }
+    //    })
+
+
     fetch("/Negocio/Obtener")
         .then(response => {
             return response.ok ? response.json() : Promise.reject(response);
@@ -44,6 +40,7 @@ $(document).ready(function () {
         .then(responseJson => {
             if (responseJson.estado) {
                 const d = responseJson.object;
+                console.log(d);
 
                 $("#inputGroupSubTotal").text(`Sub total - ${d.simboloMoneda}`)
                 $("#inputGroupIGV").text(`IGV(${d.porcentajeImpuesto}%) - ${d.simboloMoneda}`)
@@ -82,7 +79,7 @@ $(document).ready(function () {
             },
         },
         language: "es",
-        placeholder: 'Buscar producto por (Categoria o marca)',
+        placeholder: 'Buscar producto...',
         minimumInputLength: 1,
         templateResult: formatoResultado
     });
@@ -121,6 +118,8 @@ let ProductosParaVenta = [];
 $("#cboBuscarProducto").on("select2:select", function (e) {
     const data = e.params.data;
 
+    //console.log(data);
+
     let producto_encontrado = ProductosParaVenta.filter(p => p.idProducto == data.id)
     if (producto_encontrado > 0) {
         $("#cboBuscarProducto").val("").trigger("change")
@@ -133,19 +132,15 @@ $("#cboBuscarProducto").on("select2:select", function (e) {
         text: data.text,
         ImageUrl: data.urlImagen,
         type: "input",
-        showCancelButton: true,
+        showCanceButton: true,
         closeOnConfirm: false,
         InputPlaceholder: "Ingrese cantidad"
     },
-       
         function (valor) {
-            if (valor === false) {
-                $("#cboBuscarProducto").val("").trigger("change")
-                swal.close();
-            }
+            if (valor === false) return false;
 
             if (valor === "") {
-                toastr.warning("", "Debe ingresar la cantidad")
+                toastr.warning("", "Necesitas ingresar la cantidad")
                 return false;
             }
             if (isNaN(parseInt(valor))) {
@@ -162,8 +157,10 @@ $("#cboBuscarProducto").on("select2:select", function (e) {
                 precio: data.precio.toString(),
                 total: (parseFloat(valor) * data.precio).toString()
             }
+            console.log(producto);
 
             ProductosParaVenta.push(producto)
+            console.log(ProductosParaVenta);
             mostrarProducto_Precios()
             $("#cboBuscarProducto").val("").trigger("change")
             swal.close()
@@ -227,13 +224,11 @@ $("#btnTerminarVentar").click(function () {
 
     const vmDetalleVenta = ProductosParaVenta;
 
-    console.log($("#cboTipoDocumentoVenta").val())
-
     const venta = {
         idTipoDocumentoVenta: $("#cboTipoDocumentoVenta").val(),
         documentoCliente: $("#txtDocumentoCliente").val(),
-        nombreCliente: $("#txtNombreCliente").val(),
-        subTotal: $("#txtSubTotal").val(),
+        documentoCliente: $("#txtNombreCliente").val(),
+        subtotal: $("#txtSubTotal").val(),
         impuestoTotal: $("#txtIGV").val(),
         total: $("#txtTotal").val(),
         DetalleVenta: vmDetalleVenta
@@ -255,14 +250,13 @@ $("#btnTerminarVentar").click(function () {
                 ProductosParaVenta = [];
                 mostrarProducto_Precios();
 
+                $("#txtDocumentoCliente").val("")
                 $("#txtNombreCliente").val("")
                 $("#cboTipoDocumentoVenta").val($("#cboTipoDocumentoVenta option:first").val())
 
-                swal({ title: "Registrado!",text: `Numero Venta: ${responseJson.object.numeroVenta}`, type: "success"}, function() { location.reload(); });
-
+                swal("Registrado!", `Numero Venta: ${responseJson.object.numeroVenta}`, "success")
             } else {
                 swal("lo sentimos!!", responseJson.mensaje, "error")
             }
-            
         })
 })
